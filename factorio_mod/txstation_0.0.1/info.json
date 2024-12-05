@@ -1,0 +1,9 @@
+{
+	"name": "txstation", 
+	"version": "0.0.1",
+	"title": "TX Station",
+	"author": "fm9000",
+	"factorio_version": "2.0", 
+	"contact": "@fm9000 on discord", 
+	"description": "Every signal connected to this substation will be written to a JSON file in the Factorio folder. Meant to be processed by Prometheus/Grafana."
+}
