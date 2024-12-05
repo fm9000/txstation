@@ -1,0 +1,27 @@
+volumes:
+  txstation_db:
+
+services:
+
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes: 
+      - txstation_db:/var/lib/postgresql/data
+    ports:
+     - '5432:5432'
+ 
+  json_to_database:
+    build:
+      context: ./json_to_database
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - /opt/factorio/script-output/txstation.json:/txstation.json
+    environment:
+      - POSTGRES_URL=postgresql+psycopg2://postgres:postgres@postgres:5432/postgres
+      - PROM_FILE=/txstation.json
